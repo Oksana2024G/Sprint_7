@@ -3,6 +3,7 @@ import pytest
 import helper
 import requests
 from data import Url
+from data import ErrorMessages
 
 class TestLoginCourier:
     @allure.title('Проверка успешной авторизации курьера')
@@ -18,7 +19,7 @@ class TestLoginCourier:
         login_data = {"login": login, "password": password}
         login_data[missing_field] = None
         response = requests.post(f'{Url.BASE_URL}{Url.LOGIN_URL}', json=login_data)
-        assert response.status_code == 400
+        assert response.status_code == 400 and response.json() == ErrorMessages.INSUFFICIENT_DATA_LOGIN_MESSAGE
 
 
     @allure.title('Проверка невозможности авторизации курьера с неверными учетными данными')
@@ -27,10 +28,10 @@ class TestLoginCourier:
         incorrect_login = login + "incorrect"
         incorrect_password = str(int(password) + 1)
         response = auth_methods.login(incorrect_login, incorrect_password)
-        assert response.status_code == 404
+        assert response.status_code == 404 and response.json() == ErrorMessages.NOT_FOUND_MESSAGE
 
     @allure.title('Проверка невозможности авторизации курьера с несуществующим логином и паролем')
     def test_impossibility_login_courier_with_nonexistent_user(self, auth_methods):
         login_data = {"login": "nonexistent_login", "password": "wrong_password"}
         response = requests.post(f'{Url.BASE_URL}{Url.LOGIN_URL}', json=login_data)
-        assert response.status_code == 404
+        assert response.status_code == 404 and response.json() == ErrorMessages.NOT_FOUND_MESSAGE

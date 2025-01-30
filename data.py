@@ -37,3 +37,15 @@ class ErrorMessages:
     LOGIN_ALREADY_USED_MESSAGE = {'message': 'Этот логин уже используется. Попробуйте другой.'}
     NOT_FOUND_MESSAGE = {'message': 'Учетная запись не найдена'}
     INSUFFICIENT_DATA_LOGIN_MESSAGE = {'message':  'Недостаточно данных для входа'}
+
+class OrderData:
+    DEFAULT_ORDER_PAYLOAD = {
+        "firstName": "Александр",
+        "lastName": "Пушкин",
+        "address": "Лукоморье,  д.25",
+        "metroStation": 25,
+        "phone": "+79998887766",
+        "rentTime": 3,
+        "deliveryDate": "2025-01-30",
+        "comment": "Позови золотую рыбку",
+    }
