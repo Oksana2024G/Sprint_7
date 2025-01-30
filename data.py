@@ -32,3 +32,8 @@ class DataForOrder:
             "BLACK"
         ]
     }
+class ErrorMessages:
+    INSUFFICIENT_DATA_CREATE_MESSAGE = {'message': 'Недостаточно данных для создания учетной записи'}
+    LOGIN_ALREADY_USED_MESSAGE = {'message': 'Этот логин уже используется. Попробуйте другой.'}
+    NOT_FOUND_MESSAGE = {'message': 'Учетная запись не найдена'}
+    INSUFFICIENT_DATA_LOGIN_MESSAGE = {'message':  'Недостаточно данных для входа'}
