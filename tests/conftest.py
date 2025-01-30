@@ -21,7 +21,7 @@ def generate_courier_data():
     firstName = courier_body['firstName']
     yield [courier_body, login, password, firstName]  # отдаем данные в тесты
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function", autouse=True)
 def delete_courier_data(generate_courier_data, auth_methods, courier_methods):
     #Фикстура для удаления курьера после тестов
     courier_body, login, password, _ = generate_courier_data
